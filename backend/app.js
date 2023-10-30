@@ -1,9 +1,13 @@
 import express from "express";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 
-dotenv.config();
-
 import connectDB from "./config/db.js";
+import { notFound, handleError } from "./middleware/errorHandler.js";
+
+import userRoutes from "./routes/user.js";
+
+dotenv.config();
 
 const port = process.env.PORT || 5000;
 
@@ -14,17 +18,15 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cookieParser());
+
 app.get("", (req, res) => {
   res.send("API is running...");
 });
 
-app.use((error, req, res, next) => {
-  if (res.headerSent) {
-    return next(error);
-  }
+app.use("/api/users", userRoutes);
 
-  res.status(error.code || 500);
-  res.json({ message: error.message || "An unknow error ocurred!" });
-});
+app.use(notFound);
+app.use(handleError);
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
