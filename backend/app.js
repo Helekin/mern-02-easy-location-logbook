@@ -6,6 +6,7 @@ import connectDB from "./config/db.js";
 import { notFound, handleError } from "./middleware/errorHandler.js";
 
 import userRoutes from "./routes/user.js";
+import placeRoutes from "./routes/place.js";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.get("", (req, res) => {
 });
 
 app.use("/api/users", userRoutes);
+app.use("/api/places", placeRoutes);
 
 app.use(notFound);
 app.use(handleError);
