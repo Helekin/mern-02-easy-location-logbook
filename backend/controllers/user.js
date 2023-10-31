@@ -1,4 +1,4 @@
-import asyncHandler from "../middleware/asynHandler.js";
+import asyncHandler from "../middleware/asyncHandler.js";
 
 import generateToken from "../utils/generateToken.js";
 

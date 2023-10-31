@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const placeSchema = mongoose.Schema({
+const placeSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
