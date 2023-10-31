@@ -51,7 +51,7 @@ const updatePlace = asyncHandler(async (req, res) => {
     throw new Error("Could not find place for provided id");
   }
 
-  if (place.creator.toString() !== req.user._id) {
+  if (place.creator.toString() !== req.user._id.toString()) {
     res.status(401);
     throw new Error("You are not allowed to edit this place");
   }
@@ -64,7 +64,7 @@ const updatePlace = asyncHandler(async (req, res) => {
   res.status(200).json({ place: place });
 });
 
-const deletePlace = async (req, res, next) => {
+const deletePlace = asyncHandler(async (req, res) => {
   const placeId = req.params.pid;
 
   const place = await Place.findById(placeId).populate("creator");
@@ -74,7 +74,7 @@ const deletePlace = async (req, res, next) => {
     throw new Error("Could not find place for this id");
   }
 
-  if (place.creator.id.toString() !== req.user._id) {
+  if (place.creator._id.toString() !== req.user._id.toString()) {
     res.status(401);
     throw new Error("You are not allowed to delete this place");
   }
@@ -83,7 +83,7 @@ const deletePlace = async (req, res, next) => {
 
   session.startTransaction();
 
-  await place.remove({ session: session });
+  await place.deleteOne({ session: session });
 
   place.creator.places.pull(place);
 
@@ -92,7 +92,7 @@ const deletePlace = async (req, res, next) => {
   await session.commitTransaction();
 
   res.status(200).json({ message: "Deleted place" });
-};
+});
 
 const getPlaceById = asyncHandler(async (req, res) => {
   const placeId = req.params.pid;
@@ -107,6 +107,23 @@ const getPlaceById = asyncHandler(async (req, res) => {
   res.json({ place: place });
 });
 
-const getPlacesByUserId = asyncHandler(async (req, res) => {});
+const getPlacesByUserId = asyncHandler(async (req, res) => {
+  const userId = req.params.uid;
 
-export { createPlace, updatePlace, deletePlace, getPlaceById };
+  const userWithPlaces = await User.findById(userId).populate("places");
+
+  if (!userWithPlaces || userWithPlaces.places.length === 0) {
+    res.status(404);
+    throw new Error("Could not find places for the provided user id");
+  }
+
+  res.json({ places: userWithPlaces.places.map((place) => place) });
+});
+
+export {
+  createPlace,
+  updatePlace,
+  deletePlace,
+  getPlaceById,
+  getPlacesByUserId,
+};
