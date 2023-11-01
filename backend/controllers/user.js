@@ -5,7 +5,7 @@ import generateToken from "../utils/generateToken.js";
 import User from "../models/user.js";
 
 const signUp = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, image, password } = req.body;
 
   const userExists = await User.findOne({ email: email });
 
@@ -17,6 +17,7 @@ const signUp = asyncHandler(async (req, res) => {
   const user = await User.create({
     name: name,
     email: email,
+    image: image,
     password: password,
   });
 
@@ -45,6 +46,7 @@ const login = asyncHandler(async (req, res) => {
     res.status(200).json({
       _id: user._id,
       name: user.name,
+      image: user.image,
       email: user.email,
     });
   } else {
@@ -53,10 +55,19 @@ const login = asyncHandler(async (req, res) => {
   }
 });
 
+const logout = asyncHandler(async (req, res) => {
+  res.cookie("jwt", "", {
+    httpOnly: true,
+    expires: new Date(0),
+  });
+
+  res.status(200).json({ message: "Logged out successfully" });
+});
+
 const getUsers = asyncHandler(async (req, res) => {
   const users = await User.find({}).select("-password");
 
   res.status(200).json(users);
 });
 
-export { signUp, login, getUsers };
+export { signUp, login, logout, getUsers };
