@@ -1,6 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import path from "path";
 
 import connectDB from "./config/db.js";
 import { notFound, handleError } from "./middleware/errorHandler.js";
@@ -27,6 +28,9 @@ app.get("", (req, res) => {
 
 app.use("/api/users", userRoutes);
 app.use("/api/places", placeRoutes);
+
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.use(notFound);
 app.use(handleError);

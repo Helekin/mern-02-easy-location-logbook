@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Card from "../../shared/components/UIElements/Card";
 import Input from "../../shared/components/FormElements/Input";
+import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import Button from "../../shared/components/FormElements/Button";
 import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
@@ -47,17 +48,21 @@ const Auth = () => {
           email: formState.inputs.email.value,
           password: formState.inputs.password.value,
         }).unwrap();
+
         dispatch(setCredentials({ ...response }));
       } catch (err) {
         setError(err.data?.message || err.error);
       }
     } else {
       try {
-        const response = await signup({
-          name: formState.inputs.name.value,
-          email: formState.inputs.email.value,
-          password: formState.inputs.password.value,
-        }).unwrap();
+        const formData = new FormData();
+        formData.append("name", formState.inputs.name.value);
+        formData.append("email", formState.inputs.email.value);
+        formData.append("password", formState.input.password.value);
+        // formData.append("image", formState.input.image.value);
+
+        const response = await signup(formData).unwrap();
+
         dispatch(setCredentials({ ...response }));
       } catch (err) {
         setError(err.data?.message || err.error);
@@ -133,13 +138,12 @@ const Auth = () => {
             />
           )}
           {!isLoginMode && (
-            <></>
-            // <ImageUpload
-            //   center
-            //   id="image"
-            //   onInput={inputHandler}
-            //   errorText="Please provide an image."
-            // />
+            <ImageUpload
+              center
+              id="image"
+              onInput={inputHandler}
+              errorText="Please provide an image."
+            />
           )}
           <Input
             element="input"
