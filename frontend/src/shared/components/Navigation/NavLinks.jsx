@@ -20,7 +20,7 @@ const NavLinks = () => {
 
       dispatch(logout());
 
-      navigate("/login");
+      navigate("/auth");
     } catch (err) {
       console.log(err);
     }
