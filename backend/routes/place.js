@@ -17,7 +17,7 @@ router.get("/:pid", getPlaceById);
 
 router.get("/user/:uid", getPlacesByUserId);
 
-router.post("/", protect, uploadImage.single("image"), createPlace);
+router.post("/", [uploadImage.single("image"), protect], createPlace);
 
 router.put("/:pid", protect, updatePlace);
 

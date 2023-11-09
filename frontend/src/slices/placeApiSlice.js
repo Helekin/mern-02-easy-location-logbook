@@ -5,11 +5,11 @@ import { apiSlice } from "./apiSlice";
 export const placeApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createPlace: builder.mutation({
-      query: () => ({
-        url: PLACES_URL,
+      query: (data) => ({
+        url: `${PLACES_URL}`,
         method: "POST",
+        body: data,
       }),
-      invalidatesTags: ["Place"],
     }),
   }),
 });

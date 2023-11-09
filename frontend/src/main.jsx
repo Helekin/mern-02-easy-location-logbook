@@ -8,10 +8,11 @@ import {
 } from "react-router-dom";
 import { Provider } from "react-redux";
 
-import App from "./App";
+import App from "./App.jsx";
 import Auth from "./user/pages/Auth";
 import Users from "./user/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
+import UserPlaces from "./places/pages/UserPlaces";
 
 import store from "./store/store";
 
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<Users />} />
       <Route path="/auth" element={<Auth />} />
       <Route path="/places/new" element={<NewPlace />} />
+      <Route path="/:userId/places" element={<UserPlaces />} />
     </Route>
   )
 );
