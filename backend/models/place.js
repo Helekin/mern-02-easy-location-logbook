@@ -17,10 +17,10 @@ const placeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  location: {
-    lat: { type: Number, required: true },
-    lng: { type: Number, required: true },
-  },
+  // location: {
+  //   lat: { type: Number, required: true }, // Use this when you have a google key
+  //   lng: { type: Number, required: true }, // Use this when you have a google key
+  // },
   creator: { type: mongoose.Types.ObjectId, required: true, ref: "user" },
 });
 

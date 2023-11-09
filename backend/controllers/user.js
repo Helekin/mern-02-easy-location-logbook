@@ -5,9 +5,9 @@ import generateToken from "../utils/generateToken.js";
 import User from "../models/user.js";
 
 const signUp = asyncHandler(async (req, res) => {
-  const { name, email, image, password } = req.body;
+  const { name, email, password } = req.body;
 
-  const userExists = await User.findOne({ email: email });
+  const userExists = await User.findOne({ email: email }).select("-password");
 
   if (userExists) {
     res.status(400);
@@ -17,7 +17,7 @@ const signUp = asyncHandler(async (req, res) => {
   const user = await User.create({
     name: name,
     email: email,
-    image: image,
+    image: req.file.path,
     password: password,
   });
 
@@ -28,6 +28,7 @@ const signUp = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
+      image: req.file.path,
     });
   } else {
     res.status(400);

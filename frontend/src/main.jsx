@@ -8,25 +8,27 @@ import {
 } from "react-router-dom";
 import { Provider } from "react-redux";
 
-import App from "./App.jsx";
-import Auth from "./user/pages/Auth.jsx";
-import Users from "./user/pages/Users.jsx";
+import App from "./App";
+import Auth from "./user/pages/Auth";
+import Users from "./user/pages/Users";
+import NewPlace from "./places/pages/NewPlace";
 
-import store from "./store/store.js";
+import store from "./store/store";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route path="/users" element={<Users />} />
+      <Route index={true} path="/" element={<Users />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path="/places/new" element={<NewPlace />} />
     </Route>
   )
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <React.Fragment>
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
-  </React.StrictMode>
+  </React.Fragment>
 );

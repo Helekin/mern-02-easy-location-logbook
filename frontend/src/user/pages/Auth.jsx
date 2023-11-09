@@ -58,8 +58,8 @@ const Auth = () => {
         const formData = new FormData();
         formData.append("name", formState.inputs.name.value);
         formData.append("email", formState.inputs.email.value);
-        formData.append("password", formState.input.password.value);
-        // formData.append("image", formState.input.image.value);
+        formData.append("password", formState.inputs.password.value);
+        formData.append("image", formState.inputs.image.value);
 
         const response = await signup(formData).unwrap();
 

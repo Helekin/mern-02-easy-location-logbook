@@ -24,8 +24,19 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
+    getUser: builder.query({
+      query: () => ({
+        url: USERS_URL,
+      }),
+      providesTags: ["Users"],
+      keepUnusedDataFor: 5,
+    }),
   }),
 });
 
-export const { useSignupMutation, useLoginMutation, useLogoutMutation } =
-  userApiSlice;
+export const {
+  useSignupMutation,
+  useLoginMutation,
+  useLogoutMutation,
+  useGetUserQuery,
+} = userApiSlice;

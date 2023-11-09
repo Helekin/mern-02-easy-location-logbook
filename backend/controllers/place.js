@@ -6,15 +6,13 @@ import Place from "../models/place.js";
 import asyncHandler from "../middleware/asyncHandler.js";
 
 const createPlace = asyncHandler(async (req, res) => {
-  const { title, description, address, lat, lng } = req.body;
+  const { title, description, address } = req.body;
 
   const createdPlace = new Place({
     title: title,
     description: description,
     address: address,
-    location: { lat: lat, lng: lng },
-    image:
-      "https://diocesisambato.org/wp-content/uploads/2015/07/iglesia_de_bellavista.jpg",
+    image: req.file.path,
     creator: req.user._id,
   });
 
