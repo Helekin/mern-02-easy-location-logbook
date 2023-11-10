@@ -111,8 +111,7 @@ const getPlacesByUserId = asyncHandler(async (req, res) => {
   const userWithPlaces = await User.findById(userId).populate("places");
 
   if (!userWithPlaces || userWithPlaces.places.length === 0) {
-    res.status(404);
-    throw new Error("Could not find places for the provided user id");
+    return res.json({ places: [] });
   }
 
   res.json({ places: userWithPlaces.places.map((place) => place) });

@@ -11,7 +11,14 @@ export const placeApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    getPlacesByUserId: builder.query({
+      query: (userId) => ({
+        url: `${PLACES_URL}/user/${userId}`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 });
 
-export const { useCreatePlaceMutation } = placeApiSlice;
+export const { useCreatePlaceMutation, useGetPlacesByUserIdQuery } =
+  placeApiSlice;
