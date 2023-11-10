@@ -10,7 +10,7 @@ import { useGetPlacesByUserIdQuery } from "../../slices/placeApiSlice";
 const UserPlaces = () => {
   const { userId } = useParams();
 
-  const { data, isLoading } = useGetPlacesByUserIdQuery(userId);
+  const { data, isLoading, refetch } = useGetPlacesByUserIdQuery(userId);
 
   return (
     <React.Fragment>
@@ -19,7 +19,7 @@ const UserPlaces = () => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && <PlaceList items={data.places} onDeletePlace={() => {}} />}
+      {!isLoading && <PlaceList items={data.places} refetch={refetch} />}
     </React.Fragment>
   );
 };

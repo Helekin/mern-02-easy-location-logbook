@@ -13,6 +13,8 @@ import Auth from "./user/pages/Auth";
 import Users from "./user/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
 import UserPlaces from "./places/pages/UserPlaces";
+import UpdatePlace from "./places/pages/UpdatePlace";
+import PrivateRoute from "./shared/components/Navigation/PrivateRoute";
 
 import store from "./store/store";
 
@@ -21,8 +23,12 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<Users />} />
       <Route path="/auth" element={<Auth />} />
-      <Route path="/places/new" element={<NewPlace />} />
       <Route path="/:userId/places" element={<UserPlaces />} />
+
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/places/new" element={<NewPlace />} />
+        <Route path="/places/:placeId" element={<UpdatePlace />} />
+      </Route>
     </Route>
   )
 );
