@@ -12,9 +12,9 @@ export const placeApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     updatePlace: builder.mutation({
-      query: (data, placeId) => ({
-        url: `${PLACES_URL}/${placeId}`,
-        method: "UPDATE",
+      query: (data) => ({
+        url: `${PLACES_URL}/${data.placeId}`,
+        method: "PUT",
         body: data,
       }),
       invalidatesTags: ["Places"],

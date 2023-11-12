@@ -80,11 +80,11 @@ const PlaceItem = (props) => {
             <p>{props.description}</p>
           </div>
           <div className="place-item__actions">
-            {userInfo._id === props.creatorId && (
+            {userInfo && userInfo._id === props.creatorId && (
               <Button to={`/places/${props.id}`}>EDIT</Button>
             )}
 
-            {userInfo._id === props.creatorId && (
+            {userInfo && userInfo._id === props.creatorId && (
               <Button danger onClick={showDeleteWarningHandler}>
                 DELETE
               </Button>
