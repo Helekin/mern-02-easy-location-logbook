@@ -55,9 +55,9 @@ Due to the requirement of a paid version by Google for using its API to obtain g
 The changes can be viewed at:
 
 > backend
->
 > - [models/place.js](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/backend/models/place.js)
 > - [controllers/places.js](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/backend/controllers/place.js)
+>
 > frontend
 > - [frontend](https://github.com/Helekin/mern-02-easy-location-logbook/tree/main/frontend)
 
@@ -78,6 +78,34 @@ The main alteration can be observed at:
 
 > frontend
 > - [main.jsx](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/frontend/src/main.jsx)
+
+### FAQ: How do I use Vite instead of CRA?
+
+There are a few differences you need to be aware of using Vite in place of CRA.
+
+#### Setting up the proxy
+
+Using CRA we have a "proxy" setting in our frontend/package.json to avoid breaking the browser Same Origin Policy in development. In Vite you have to set up our proxy in your [vite.config.js](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/frontend/vite.config.js)
+
+#### Setting up linting
+
+By default CRA outputs linting from eslint to your terminal and browser console. To get Vite to ouput linting to the terminal you need to add a plugin as a development dependency.
+
+```sh
+npm i -D vite-plugin-eslint
+```
+
+The changes can be seen as follows:
+
+> - [vite.config.js](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/frontend/vite.config.js) 
+
+#### Setting up the eslint file
+
+By default the eslint config that comes with a Vite React project treats some rules from React as errors which will break your app.
+
+The changes can be seen as follows:
+
+> - [.eslintrc.cjs](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/frontend/.eslintrc.cjs)
 
 ## License
 
