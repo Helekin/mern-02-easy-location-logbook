@@ -58,7 +58,7 @@ The changes can be viewed at:
 >
 > - [models/place.js](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/backend/models/place.js)
 > - [controllers/places.js](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/backend/controllers/place.js)
->   frontend
+> frontend
 > - [frontend](https://github.com/Helekin/mern-02-easy-location-logbook/tree/main/frontend)
 
 ### Usage of Redux, React-Redux, and Redux Toolkit
