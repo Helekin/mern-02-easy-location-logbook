@@ -43,6 +43,10 @@ npm install
 npm run dev
 ```
 
+### API
+
+The `easy-location-logbook.json` file can be loaded into the program known as Postman to review all the APIs generated in the backend.
+
 ## Bug Fixes, corrections and code FAQ
 
 This code was developed using `Vite.js` instead of `Create React App`, a choice that aligns with the React documentation's suggestion of employing an alternative frontend tool.
