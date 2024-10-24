@@ -49,9 +49,9 @@ The `easy-location-logbook.json` file can be loaded into the program known as Po
 
 ## Bug Fixes, corrections and code FAQ
 
-This code was developed using `Vite.js` instead of `Create React App`, a choice that aligns with the React documentation's suggestion of employing an alternative frontend tool.
+This project was developed using `Vite.js` instead of `Create React App`, a choice that aligns with the React documentation's suggestion of employing an alternative frontend tool.
 
-This iteration might feature alterations compared to the initial course code, including modifications in file names, functions, or variables.
+This project might feature alterations compared to the initial course code, including modifications in file names, functions, or variables.
 
 ### Project Restructuring
 
@@ -59,10 +59,12 @@ Due to the requirement of a paid version by Google for using its API to obtain g
 The changes can be viewed at:
 
 > backend
+>
 > - [models/place.js](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/backend/models/place.js)
 > - [controllers/places.js](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/backend/controllers/place.js)
 >
 > frontend
+>
 > - [frontend](https://github.com/Helekin/mern-02-easy-location-logbook/tree/main/frontend)
 
 ### Usage of Redux, React-Redux, and Redux Toolkit
@@ -71,6 +73,7 @@ Since the original version uses `axios` to call APIs, we have transitioned to us
 The new files can be found in:
 
 > frontend
+>
 > - [store.js](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/frontend/src/store/store.js)
 > - [slices](https://github.com/Helekin/mern-02-easy-location-logbook/tree/main/frontend/src/slices)
 > - [main.jsx](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/frontend/src/main.jsx)
@@ -81,6 +84,7 @@ As the `react-router-dom`` library has evolved since the creation of the origina
 The main alteration can be observed at:
 
 > frontend
+>
 > - [main.jsx](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/frontend/src/main.jsx)
 
 ### FAQ: How do I use Vite instead of CRA?
@@ -101,7 +105,7 @@ npm i -D vite-plugin-eslint
 
 The changes can be seen as follows:
 
-> - [vite.config.js](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/frontend/vite.config.js) 
+> - [vite.config.js](https://github.com/Helekin/mern-02-easy-location-logbook/blob/main/frontend/vite.config.js)
 
 #### Setting up the eslint file
 
